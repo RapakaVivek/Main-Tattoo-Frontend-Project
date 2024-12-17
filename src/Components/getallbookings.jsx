@@ -1,41 +1,25 @@
-import { useEffect, useState  } from "react";
-import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 import Swal from "sweetalert2";
 import "react-datepicker/dist/react-datepicker.css";
-import { useSelector } from "react-redux";
 
 const Getallbookings = () => {
-
-const Api = useSelector((state)=>state.serverurl)
-
-
-
+  const Api = useSelector((state) => state.serverurl);
   const [allbookingss, setallbookings] = useState([]);
-
-  // let user_id = "6748903a4209201f595bea7e";
-  const userdetails = useSelector((state)=>state.users)
-   
-
+  const userdetails = useSelector((state) => state.users);
 
   const getallbookingshistory = async () => {
-    // console.log(user_id)
     let response = await fetch(`${Api.url}/bookings/bookings/${userdetails._id}`);
     let data = await response.json();
-    console.log(data)
     if (data.message === "success") {
-      
       setallbookings(data.data);
     }
   };
 
   useEffect(() => {
-    if(userdetails){
-      console.log("bookings",userdetails)
+    if (userdetails) {
       getallbookingshistory();
     }
-   
-    
-
   }, [userdetails]);
 
   const handleReschedule = async (booking) => {
@@ -138,9 +122,10 @@ const Api = useSelector((state)=>state.serverurl)
             display: "flex",
             justifyContent: "space-between",
             alignItems: "center",
+            flexWrap: "wrap",
           }}
         >
-          <div style={{ display: "flex", alignItems: "center" }}>
+          <div style={{ display: "flex", alignItems: "center", width: "100%", flexWrap: "wrap" }}>
             <img
               src={booking.designDetails.image}
               alt="Design"
@@ -150,18 +135,24 @@ const Api = useSelector((state)=>state.serverurl)
                 objectFit: "cover",
                 borderRadius: "8px",
                 marginRight: "20px",
+                marginBottom: "10px",
+                flex: "0 0 150px",
               }}
             />
-            <div>
-              <h3 style={{ margin: "5px 0", color: "#333" }}>{booking.designDetails.name}</h3>
-              <p style={{ margin: "5px 0", color: "#666" }}>Price: ${booking.designDetails.price}</p>
-              <p style={{ margin: "5px 0", color: "#666" }}>
+            <div style={{ flex: "1", minWidth: "200px" }}>
+              <h3 style={{ margin: "5px 0", color: "#333", fontSize: "16px" }}>
+                {booking.designDetails.name}
+              </h3>
+              <p style={{ margin: "5px 0", color: "#666", fontSize: "14px" }}>
+                Price: ${booking.designDetails.price}
+              </p>
+              <p style={{ margin: "5px 0", color: "#666", fontSize: "14px" }}>
                 Date: {new Date(booking.date).toLocaleDateString()}
               </p>
-              <p style={{ margin: "5px 0", color: "#666" }}>Time: {booking.time}</p>
+              <p style={{ margin: "5px 0", color: "#666", fontSize: "14px" }}>Time: {booking.time}</p>
             </div>
           </div>
-          <div style={{ textAlign: "right" }}>
+          <div style={{ textAlign: "right", width: "100%", marginTop: "10px" }}>
             {booking.status === "booked" ? (
               <div>
                 <button
@@ -193,7 +184,7 @@ const Api = useSelector((state)=>state.serverurl)
                 </button>
               </div>
             ) : (
-              <h3 style={{ color: "#28a745" }}>{booking.status}</h3>
+              <h3 style={{ color: "#28a745", fontSize: "16px" }}>{booking.status}</h3>
             )}
           </div>
         </div>

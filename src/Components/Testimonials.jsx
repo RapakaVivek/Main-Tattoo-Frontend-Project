@@ -177,7 +177,7 @@ const Testimonials = () => {
                     </p>
                   )}
                   <button
-                    className="btn btn-primary btn-sm mt-2"
+                    className="btn btn-danger btn-sm mt-2"
                     onClick={() => handleReadMore(index)}
                   >
                     {expandedComment === index ? "Read Less" : "Read More"}

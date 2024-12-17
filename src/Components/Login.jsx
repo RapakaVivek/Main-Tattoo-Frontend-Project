@@ -1,25 +1,17 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { setuser } from "./CartComp";
 
 function Login() {
-  const dispatch = useDispatch()
-const Api = useSelector((state)=>state.serverurl)
+  const dispatch = useDispatch();
+  const Api = useSelector((state) => state.serverurl);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError] = useState(""); 
+  const [error, setError] = useState("");
   const navigate = useNavigate();
-  const initialState =localStorage.getItem("authToken") ;
 
-  
-
-  useEffect(()=>{
-    if(initialState){
-      console.log("login page",initialState)
-    }
-  },[])
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -29,40 +21,30 @@ const Api = useSelector((state)=>state.serverurl)
     }
 
     try {
-     
       const response = await axios.post(`${Api.url}/Login/login`, {
         email,
         password,
-        
       });
-      
-      console.log(response.data.user)
-      
+
       if (response.data.token) {
-     
-        let _id=response?.data?.user?._id;
-        let name = response?.data?.user?.username;
-        let email = response?.data?.user?.email;
-        let phonenumber = response?.data?.user?.phonenumber;
-        console.log(_id,name,email,phonenumber)
-         dispatch(setuser({_id,name,email,phonenumber}))
+        const { _id, username, email, phonenumber } = response.data.user;
+        dispatch(setuser({ _id, username, email, phonenumber }));
         localStorage.setItem("authToken", response.data.token);
         navigate("/home");
       } else {
         setError("Invalid credentials, please try again.");
       }
     } catch (error) {
-      
-      console.error("Login error:", error);
       setError("An error occurred during login. Please try again.");
     }
   };
+
   return (
     <div className="login">
-      <h1 className="logi">Login</h1>
-      {error && <p style={{ color: "red" }}>{error}</p>}
+      <h1 className="logi">Tattoo Login</h1>
+      {error && <p className="error-message">{error}</p>}
 
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} className="login-form">
         <input
           type="email"
           value={email}
@@ -79,10 +61,12 @@ const Api = useSelector((state)=>state.serverurl)
         />
         <button type="submit">Login</button>
       </form>
-      <div>
+
+      <div className="forgot-password">
         <Link to="/forgetpassword">Forgot Password?</Link>
       </div>
-      <div>
+
+      <div className="signup-prompt">
         <p>
           Don't have an account? <Link to="/register">Sign Up</Link>
         </p>
@@ -92,3 +76,4 @@ const Api = useSelector((state)=>state.serverurl)
 }
 
 export default Login;
+

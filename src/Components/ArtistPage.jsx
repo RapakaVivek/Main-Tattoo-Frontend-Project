@@ -49,7 +49,7 @@ const ArtistPage = () => {
     <div className="container">
       <header>
         <h1>Tattoo Artists</h1>
-        <p>
+        <p style={{marginLeft:'0px'}}>
           I almost moved into a place over a funeral parlor. My father said,
           'That's just too macabre,' <br />
           but I thought I'd be embracing my mortality. I told him it would keep
@@ -60,7 +60,7 @@ const ArtistPage = () => {
         {artists.map((artist) => (
           <div className="artist-card" key={artist.id}>
             {/* Link to ArtistDetailsPage with artist id passed in the state */}
-            <Link to={`/ArtistDetailpage`} state={{ id: artist.id }}>
+            {/* <Link to={`/ArtistDetailpage`} state={{ id: artist.id }}> */}
               <div
                 style={{
                   border: "1px solid #ddd",
@@ -87,7 +87,7 @@ const ArtistPage = () => {
                   ))}
                 </div>
               </div>
-            </Link>
+            {/* </Link> */}
           </div>
         ))}
       </div>

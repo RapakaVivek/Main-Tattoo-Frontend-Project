@@ -21,7 +21,7 @@ const DesginModule = () => {
     }, [])
 
     const fetchdata = async () => {
-        let response = await fetch(`${Api.url}/api/designs`)
+        let response = await fetch(`${Api.url}/api/designs`)  
         let data = await response.json()
         console.log(data)
         setdata(data)

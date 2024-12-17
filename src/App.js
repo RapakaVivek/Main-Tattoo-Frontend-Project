@@ -20,6 +20,7 @@ import Protectedroute from './Components/protectedroutes';
 import { useDispatch, useSelector } from 'react-redux';
 import { setuser } from './Components/CartComp';
 import { fetchCart } from './authapis';
+import MainSelectedDetails from './MainSelectedDetails';
 
 function App() {
   const Api = useSelector((state) => state.serverurl);
@@ -85,7 +86,7 @@ function App() {
       <Routes>
         <Route path="/home" element={<Protectedroute><Home /></Protectedroute>} />
         <Route path="/design" element={<Protectedroute><Design /></Protectedroute>} />
-        <Route path="/selectProduct" element={<Protectedroute><SelectProductById /></Protectedroute>} />
+        <Route path="/selectProduct" element={<Protectedroute><MainSelectedDetails /></Protectedroute>} />
         <Route path="/Artists" element={<Protectedroute><MainArtists /></Protectedroute>} />
         <Route path="/ArtistDetailpage" element={<Protectedroute><ArtistDetailPage /></Protectedroute>} />
         <Route path="/Profile" element={<Protectedroute><MainProfilepage /></Protectedroute>} />

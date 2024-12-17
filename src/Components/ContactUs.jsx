@@ -127,7 +127,7 @@ const ContactUs = () => {
                     required
                   />
                 </div>
-                <button type="submit" className="btn btn-primary w-250" disabled={isSubmitting}>
+                <button type="submit" className="btn btn-danger w-250" disabled={isSubmitting}>
                   {isSubmitting ? 'Submitting...' : 'Submit'}
                 </button>
               </form>
@@ -176,7 +176,7 @@ const ContactUs = () => {
           <div className="col-md-4 text-center mb-4" style={{ border: '1px solid #ddd', padding: '20px', marginTop: '30px', boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)', borderRadius: '8px' }}>
             <i className="fas fa-map-marker-alt" style={{ fontSize: '35px', color: '#007bff' }}></i>
             <h3 className="mt-3">Our Location</h3>
-            <p className="mt-2" style={{ fontSize: '16px' }}>
+            <p className="mt-2" style={{ fontSize: '16px' ,marginRight:'60px'}}>
               1-98/9/65, Jai Hind Gandhi Rd, VIP Hills,<br />
               Jaihind Enclave, Madhapur, Hyderabad,<br />
               Telangana -50008.

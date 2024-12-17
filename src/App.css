@@ -800,3 +800,29 @@ header p {
 .error {
   color: #d9534f;
 }
+/* table */
+/* Mobile-specific adjustments */
+@media (max-width: 576px) {
+  .table th,
+  .table td {
+    font-size: 12px;  /* Smaller font size */
+  }
+
+  .table img {
+    width: 40px;   /* Smaller image */
+    height: 40px;
+  }
+
+  .table td {
+    padding: 8px;   /* Reduced padding for better space utilization */
+  }
+
+  .btn {
+    font-size: 12px;   /* Smaller font size for buttons */
+    padding: 5px 10px;  /* Adjust button padding */
+  }
+
+  .btn-sm {
+    padding: 3px 8px;   /* Adjust small buttons for mobile */
+  }
+}
